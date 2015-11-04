@@ -1,0 +1,52 @@
+# NAME
+
+Mojolicious::Plugin::ExposeControllerMethod - expose controller method
+
+# SYNOPSIS
+
+    # in your app
+    $app->plugin('ExposeControllerMethod');
+
+    # Then in a template:
+    Hi <%= ctrl->name %>
+
+# DESCRIPTION
+
+Exposes _selected_ methods from the current controller to Mojolicious templates
+via the `ctrl` helper.
+
+In order to expose methods to Mojolicious templates your controller must
+implement the `controller_method_name` method which will be passed the name of
+the method Mojolicious wishes to call on the controller.  This method should
+return either false (if the method cannot be called), or the name the method
+that should be called ( which is probably the same as the name of the method
+passed in.)
+
+For example:
+
+    package MyApp::Controller::Example;
+    use Mojo::Base 'Mojolicious::Controller';
+
+    sub name           { return "Mark Fowler" }
+    sub any_other_name { return "Still smells sweet" }
+    sub reverse        { my $self = shift; return scalar reverse join '', @_ }
+
+    sub controller_method_name {
+        my $self = shift;
+        my $what = shift;
+
+        return $what if $what =~ /\A(test1|reverse)\z/;
+        return 'any_other_name' if $what eq 'rose';
+        return;
+    }
+
+    ...
+
+The results of `controller_method_name` are expected to be consistent for
+a given Mojolicious Controller class for a given method name (this module
+is optimized on this assumption, caching method name calculations.)
+
+# SEE ALSO
+
+[MooseX::MojoControllerExposingAttributes](https://metacpan.org/pod/MooseX::MojoControllerExposingAttributes) - uses this mechanism to expose
+attributes marked with a trait from Moose Mojolicious controllers
