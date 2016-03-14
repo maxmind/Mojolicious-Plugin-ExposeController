@@ -46,7 +46,14 @@ The results of `controller_method_name` are expected to be consistent for
 a given Mojolicious Controller class for a given method name (this module
 is optimized on this assumption, caching method name calculations.)
 
+# SUPPORT
+
+Please report all issues with this code using the GitHub issue tracker at
+[https://github.com/maxmind/Mojolicious-Plugin-ExposeControllerMethod/issues](https://github.com/maxmind/Mojolicious-Plugin-ExposeControllerMethod/issues).
+
 # SEE ALSO
 
 [MooseX::MojoControllerExposingAttributes](https://metacpan.org/pod/MooseX::MojoControllerExposingAttributes) - uses this mechanism to expose
 attributes marked with a trait from Moose Mojolicious controllers
+
+[Mojolicious](https://metacpan.org/pod/Mojolicious)
