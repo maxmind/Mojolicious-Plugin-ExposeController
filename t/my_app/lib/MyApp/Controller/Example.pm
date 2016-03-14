@@ -11,8 +11,10 @@ sub controller_method_name {
     my $self = shift;
     my $what = shift;
 
+    ## no critic(ValuesAndExpressions::ProhibitAccessOfPrivateData)
     # keep track of how many times we're called for each thing
     $counter->{$what}++;
+    ## use critic
 
     return $what if $what =~ /\A(name|repeat)\z/;
     return 'any_other_name' if $what eq 'rose';
