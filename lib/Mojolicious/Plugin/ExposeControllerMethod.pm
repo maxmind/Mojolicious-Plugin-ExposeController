@@ -46,8 +46,13 @@ Mojolicious::Plugin::ExposeControllerMethod - expose controller method
 
 =head1 DESCRIPTION
 
-Exposes I<selected> methods from the current controller to Mojolicious templates
-via the C<ctrl> helper.
+This module is for advanced use.  C<$c>/C<$self> are already made available in
+templates and are likely sufficient for the majority of use cases.  This module
+was created in order to expose L<Moose> attributes in a way where you don't
+have to stash them every single time you want to use them.
+
+This module exposes I<selected> methods from the current controller to
+Mojolicious templates via the C<ctrl> helper.
 
 In order to expose methods to Mojolicious templates your controller must
 implement the C<controller_method_name> method which will be passed the name of
