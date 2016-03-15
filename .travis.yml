@@ -1,0 +1,39 @@
+---
+sudo: false
+addons:
+  apt:
+    packages:
+      - aspell
+      - aspell-en
+language: perl
+perl:
+  - blead
+  - dev
+  - '5.22'
+  - '5.20'
+  - '5.18'
+  - '5.16'
+  - '5.14'
+  - '5.12'
+  - '5.10'
+matrix:
+  allow_failures:
+    - perl: blead
+  include:
+    - env: COVERAGE=1
+      perl: '5.22'
+env:
+  global:
+    - RELEASE_TESTING=1
+    - AUTHOR_TESTING=1
+before_install:
+  - eval $(curl https://travis-perl.github.io/init) --auto
+notifications:
+  email:
+    on_failure: always
+    on_success: change
+    recipients:
+      - dev-ci@maxmind.com
+  slack:
+    rooms:
+      secure: "FzhgC9EzoBoLDZCMpYOGXatp+BV5mgn21KF9zWaV+up0IAu7LoGxN+KaCk1exiwNXEJDQVmgQHOjLSAVP4Efc3cAHZtAwvIZNAnPxWWVHGWOXHRs7PIE+pfyPWmoTcfVTwsHfg9iLTaHkAtMzLjTwPWgZRpwsVs3spws1ny2NRCBH0mpd8suZffKFCZCSfaV/dpRV1P1ReK1o7mGZUq5GJLRkjjefQ9s8+18MiBcBUqWR20kFpsU+kHGMo6/Wp2FDEs6Tc6aOjDxhN44FO+wTzfAcDokCo+UnfxBQ0MUJSo1Kp/9aaYk4r6MlDpAtcTddGr/Saipn4DOQgLTanNhJvQEsyoW8r6eQhJ7+oll/00491ECRlwHFyv/Hv95R3cAjkFclvB/IATDdudgEVxas5ujRaoV3zxRC2twX7bUVjIRAp+nPJ7aP6AzQdx9Wm8DhzC29BGO00il8MXG3sKqbIsa5iwNLnuuEDNJ0PYcjSKFiwZScEBSZl/+fWPwYDDzdVZ6H24Fugkt0jDYen7SiApLcoZwRDll6Nyhg0atw6XQXCo6Fn6cBfmlzuf+jtQwcmNU0QjAd2W8Gvy78G2Ba5RLv/O8ZN1+XgQAGs0VPnh6v8ceg+hm5aXGzON+IRzkW+UeLuuex8RkTZGgxRqgI+7syQNpEgX4xIV+qtJBk8c=\n"
