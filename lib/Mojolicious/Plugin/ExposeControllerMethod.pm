@@ -3,7 +3,7 @@ use Mojo::Base 'Mojolicious::Plugin';
 
 use Mojolicious::Plugin::ExposeControllerMethod::Proxy;
 
-our $VERSION = '1.000001';
+our $VERSION = '1.000002';
 my $PROXY_BASE_CLASS = 'Mojolicious::Plugin::ExposeControllerMethod::Proxy';
 
 sub register {
